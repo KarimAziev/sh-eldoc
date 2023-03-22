@@ -29,6 +29,16 @@
 
 ;;; Code:
 
+
+(defcustom sh-eldoc-flags-functions '(sh-eldoc-describe-if-statement)
+  "List of functions to add with `elisp-eldoc-flags-add-eldoc-functions'."
+  :group 'autofix
+  :type '(repeat
+          (radio
+           (function-item :tag "Describe if statement"
+                          sh-eldoc-describe-if-statement)
+           (function :tag "Custom function"))))
+
 (defun sh-eldoc-get-sexp ()
   "Inside or on vector return highlight position and vector."
   (save-excursion
@@ -163,22 +173,20 @@
 (defun sh-eldoc-setup ()
   "Add more `eldoc-documentation-functions'."
   (interactive)
-  (let ((fns '(km-sh-eldoc-describe-if-statement)))
-    (dolist (fn fns)
-      (add-hook 'eldoc-documentation-functions
-                fn
-                nil t))))
+  (dolist (fn sh-eldoc-flags-functions)
+    (add-hook 'eldoc-documentation-functions
+              fn
+              nil t)))
 
 
 ;;;###autoload
 (defun sh-eldoc-unsetup ()
   "Remove `eldoc-documentation-functions', added by `sh-eldoc-setup'."
   (interactive)
-  (let ((fns '(km-sh-eldoc-describe-if-statement)))
-    (dolist (fn fns)
-      (remove-hook 'eldoc-documentation-functions
-                   fn
-                   t))))
+  (dolist (fn sh-eldoc-flags-functions)
+    (remove-hook 'eldoc-documentation-functions
+                 fn
+                 t)))
 
 (provide 'sh-eldoc)
 ;;; sh-eldoc.el ends here
