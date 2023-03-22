@@ -1,0 +1,41 @@
+* sh-eldoc
+
+Extra Eldoc Functions For Sh.
+
+** Installation
+
+Emacs >= 26.1 is required.
+
+*** Manual
+
+Download the source code and put it wherever you like, e.g. into =~/.emacs.d/sh-eldoc/=
+
+#+begin_src shell :eval no
+git clone https://github.com/KarimAziev/sh-eldoc.git ~/.emacs.d/sh-eldoc/
+#+end_src
+
+Add the downloaded directory to the load path:
+
+#+begin_src elisp :eval no
+(add-to-list 'load-path "~/.emacs.d/sh-eldoc/")
+(require 'sh-eldoc)
+(add-hook 'sh-mode-hook 'sh-eldoc-setup)
+(add-hook 'sh-ts-mode-hook 'sh-eldoc-setup)
+#+end_src
+
+#+begin_src elisp :eval no
+(use-package sh-eldoc
+  :straight (sh-eldoc
+             :repo "KarimAziev/sh-eldoc"
+             :type git
+             :host github)
+  :hook ((sh-mode . sh-eldoc-setup)
+         (sh-ts-mode . sh-eldoc-setup)))
+#+end_src
+
+** Commands
+
+*** ~sh-eldoc-unsetup~
+Remove =eldoc-documentation-functions=, added by =sh-eldoc-setup=.
+*** ~sh-eldoc-setup~
+Add more =eldoc-documentation-functions=.
