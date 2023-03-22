@@ -31,8 +31,8 @@
 
 
 (defcustom sh-eldoc-flags-functions '(sh-eldoc-describe-if-statement)
-  "List of functions to add with `elisp-eldoc-flags-add-eldoc-functions'."
-  :group 'autofix
+  "List of extra eldoc functions to add with `sh-eldoc-setup'."
+  :group 'sh-eldoc
   :type '(repeat
           (radio
            (function-item :tag "Describe if statement"
