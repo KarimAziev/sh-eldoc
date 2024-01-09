@@ -1,6 +1,6 @@
 * sh-eldoc
 
-Extra Eldoc Functions For Sh.
+ This library provides additional Eldoc functions for shell scripting in Emacs. It is useful for script writers who need quick reminders about syntax and usage of shell commands and constructs.
 
 ** Installation
 
@@ -29,13 +29,16 @@ Add the downloaded directory to the load path:
              :repo "KarimAziev/sh-eldoc"
              :type git
              :host github)
-  :hook ((sh-mode . sh-eldoc-setup)
-         (sh-ts-mode . sh-eldoc-setup)))
+  :hook ((sh-base-mode . sh-eldoc-setup)))
 #+end_src
 
 ** Commands
 
-*** ~sh-eldoc-unsetup~
-Remove =eldoc-documentation-functions=, added by =sh-eldoc-setup=.
 *** ~sh-eldoc-setup~
-Add more =eldoc-documentation-functions=.
+Remove shell script documentation functions from =eldoc=.
+
+The exact list of these functions depends on the value of the custom variable =sh-eldoc-flags-functions=.
+*** ~sh-eldoc-unsetup~
+Add shell script documentation functions to =eldoc-documentation-functions=.
+
+The exact list of these functions depends on the value of the custom variable =sh-eldoc-flags-functions=
