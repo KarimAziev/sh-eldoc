@@ -25,7 +25,7 @@ jobs:
       env:
         LOCAL_REPO: ${{ github.workspace }}
         # RECIPE is your recipe as written for MELPA:
-        RECIPE: (sh-eldoc :repo "KarimAziev/sh-eldoc" :fetcher github)
+        RECIPE: (sh-eldoc :fetcher github :repo "KarimAziev/sh-eldoc")
         # set this to false (or remove it) if the package isn't on MELPA:
         EXIST_OK: false
       run: echo $GITHUB_REF && make -C ~/melpazoid
