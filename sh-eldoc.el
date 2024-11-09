@@ -95,7 +95,7 @@ Return nil if no sexp is at point or if the sexp is not a vector."
      (when-let* ((synt (nth 1 (syntax-ppss (point))))
                  (sexp (save-excursion
                          (goto-char synt)
-                         (when-let ((sexp (sexp-at-point)))
+                         (when-let* ((sexp (sexp-at-point)))
                            (when (vectorp sexp)
                              sexp))))
                  (pos (point)))
